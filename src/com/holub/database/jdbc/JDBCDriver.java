@@ -29,56 +29,58 @@ package com.holub.database.jdbc;
 import java.sql.*;
 import java.util.*;
 import java.util.logging.Logger;
-import java.net.*;
 
-/** A JDBC driver for a small in-memory database that wraps
- *  the {@link com.holub.database.Database} class. See that
- *  class for a discussion of the supported SQL.
+/**
+ * A JDBC driver for a small in-memory database that wraps the
+ * {@link com.holub.database.Database} class. See that class for a discussion of
+ * the supported SQL.
  *
- *  @include /etc/license.txt
+ * @include /etc/license.txt
  *
- *  @see com.holub.database.Database
+ * @see com.holub.database.Database
  */
 
-public class JDBCDriver implements java.sql.Driver
-{
+public class JDBCDriver implements java.sql.Driver {
 
-	private JDBCConnection connection;
-	static									//{=JDBCDriver.staticInitializer}
-	{	try
-		{	java.sql.DriverManager.registerDriver( new JDBCDriver() );
-		}
-		catch(SQLException e)
-		{	System.err.println(e);
+	static // {=JDBCDriver.staticInitializer}
+	{
+		try {
+			java.sql.DriverManager.registerDriver(new JDBCDriver());
+		} catch (SQLException e) {
+			System.err.println(e);
 		}
 	}
 
-	public boolean acceptsURL(String url) throws SQLException
-	{	return url.startsWith("file:/");
+	public boolean acceptsURL(String url) throws SQLException {
+		return url.startsWith("file:/");
 	}
 
-	public Connection connect(String uri, Properties info)
-											throws SQLException
-	{	try
-		{	return connection = new JDBCConnection(uri);
-		}
-		catch( Exception e )
-		{	throw new SQLException( e.getMessage() );
+	public Connection connect(String uri, Properties info) throws SQLException {
+		try {
+			return new JDBCConnection(uri);
+		} catch (Exception e) {
+			throw new SQLException(e.getMessage());
 		}
 	}
 
-	public int		getMajorVersion() { return 1; }
-	public int		getMinorVersion() { return 0; }
-	public boolean	jdbcCompliant()	  {	return false; }
+	public int getMajorVersion() {
+		return 1;
+	}
 
-	public DriverPropertyInfo[] 
-	getPropertyInfo(String url, Properties info) throws SQLException
-	{	return new DriverPropertyInfo[0];
+	public int getMinorVersion() {
+		return 0;
+	}
+
+	public boolean jdbcCompliant() {
+		return false;
+	}
+
+	public DriverPropertyInfo[] getPropertyInfo(String url, Properties info) throws SQLException {
+		return new DriverPropertyInfo[0];
 	}
 
 	@Override
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
