@@ -27,20 +27,20 @@
 package com.holub.text;
 
 /***
- *  An input token (a lexical symbol in the input stream).
- *	@include /etc/license.txt
+ * An input token (a lexical symbol in the input stream).
+ * 
+ * @include /etc/license.txt
  */
 
-public interface Token
-{	
-	/** Returns true if the sequence at the indicated
-	 *  offset from the beginning of the indicated
-	 *  input string matches the current token.
+public interface Token {
+	/**
+	 * Returns true if the sequence at the indicated offset from the beginning of
+	 * the indicated input string matches the current token.
 	 */
-	boolean match (String input, int offset);
+	boolean match(String input, int offset);
 
-	/** Returns the input string that matched the token
-	 *  specification.
+	/**
+	 * Returns the input string that matched the token specification.
 	 */
-	String  lexeme( );
+	String lexeme();
 }

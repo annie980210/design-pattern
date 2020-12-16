@@ -26,15 +26,14 @@
  */
 package com.holub.tools;
 
-/** A convenient container for realying a checked Exception
- *  from a method that can't declare a throws clause to
- *  a calling method that can.  This doesn't happen very
- *  often, but occasionally you don't want to declare
- *  an interface method as throwing an exception that
- *  one of the methods called from the implementation
- *  actually throws. Use it like this:
+/**
+ * A convenient container for realying a checked Exception from a method that
+ * can't declare a throws clause to a calling method that can. This doesn't
+ * happen very often, but occasionally you don't want to declare an interface
+ * method as throwing an exception that one of the methods called from the
+ * implementation actually throws. Use it like this:
  *
- *	<PRE>
+ * <PRE>
  *	inteface X
  *	{	void interfaceMethod(); // throws nothing.
  *	}
@@ -57,17 +56,23 @@ package com.holub.tools;
  *		{	throw (IOException)(e.contents());
  *		}
  *	}
- *	</PRE>
+ * </PRE>
  *
- *	@include /etc/license.txt
+ * @include /etc/license.txt
  */
 
-public class ThrowableContainer extends RuntimeException
-{	private final Throwable contents;
-	public ThrowableContainer( Throwable contents )
-	{	this.contents = contents;
+public class ThrowableContainer extends RuntimeException {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 9185892337106414549L;
+	private final Throwable contents;
+
+	public ThrowableContainer(Throwable contents) {
+		this.contents = contents;
 	}
-	public Throwable contents()
-	{	return contents;
+
+	public Throwable contents() {
+		return contents;
 	}
 }

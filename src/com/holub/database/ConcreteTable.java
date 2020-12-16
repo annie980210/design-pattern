@@ -132,8 +132,8 @@ import com.holub.tools.ArrayIterator;
 	// Inserting
 	//
 	public int insert(String[] intoTheseColumns, Object[] values) {
-		assert (intoTheseColumns.length == values.length) : "There must be exactly one value for "
-				+ "each specified column";
+		assert (intoTheseColumns.length == values.length)
+				: "There must be exactly one value for " + "each specified column";
 
 		Object[] newRow = new Object[width()];
 
@@ -146,8 +146,8 @@ import com.holub.tools.ArrayIterator;
 
 	// ----------------------------------------------------------------------
 	public int insert(Collection intoTheseColumns, Collection values) {
-		assert (intoTheseColumns.size() == values.size()) : "There must be exactly one value for "
-				+ "each specified column";
+		assert (intoTheseColumns.size() == values.size())
+				: "There must be exactly one value for " + "each specified column";
 
 		Object[] newRow = new Object[width()];
 
@@ -161,19 +161,20 @@ import com.holub.tools.ArrayIterator;
 	}
 
 	// ----------------------------------------------------------------------
-	public int insert(Map row) { // A map is considered to be "ordered," with the order defined
-									// as the order in which an iterator across a "view" returns
-									// values. My reading of this statement is that the iterator
-									// across the keySet() visits keys in the same order as the
-									// iterator across the values() visits the values.
+	public int insert(Map row) {
+		// A map is considered to be "ordered," with the order defined
+		// as the order in which an iterator across a "view" returns
+		// values. My reading of this statement is that the iterator
+		// across the keySet() visits keys in the same order as the
+		// iterator across the values() visits the values.
 
 		return insert(row.keySet(), row.values());
 	}
 
 	// ----------------------------------------------------------------------
 	public int insert(Object[] values) {
-		assert values.length == width() : "Values-array length (" + values.length + ") "
-				+ "is not the same as table width (" + width() + ")";
+		assert values.length == width()
+				: "Values-array length (" + values.length + ") " + "is not the same as table width (" + width() + ")";
 
 		doInsert((Object[]) values.clone());
 		return 1;
@@ -720,18 +721,6 @@ import com.holub.tools.ArrayIterator;
 
 			System.out.println(people.toString());
 			System.out.println(address.toString());
-
-//			try {
-//				people.insert(new Object[] { "x" });
-//				throw new AssertionError("insert wrong number of fields test failed");
-//			} catch (Throwable t) {
-//				/* Failed correctly, do nothing */ }
-//
-//			try {
-//				people.insert(new String[] { "?" }, new Object[] { "y" });
-//				throw new AssertionError("insert-nonexistent-field test failed");
-//			} catch (Exception t) {
-//				/* Failed correctly, do nothing */ }
 		}
 
 		public void testUpdate() {
