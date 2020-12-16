@@ -728,8 +728,8 @@ public final class Database { /*
 			if (in.match(DATABASE)) {
 				in.advance();
 				createDatabase(in.required(IDENTIFIER));
-			} else // must be CREATE TABLE
-			{
+			} else {
+				// must be CREATE TABLE
 				in.required(TABLE);
 				String tableName = in.required(IDENTIFIER);
 				in.required(LP);
@@ -742,9 +742,7 @@ public final class Database { /*
 		} else if (in.matchAdvance(USE) != null) {
 			in.required(DATABASE);
 			useDatabase(new File(in.required(IDENTIFIER)));
-		}
-
-		else if (in.matchAdvance(BEGIN) != null) {
+		} else if (in.matchAdvance(BEGIN) != null) {
 			in.matchAdvance(WORK); // ignore it if it's there
 			begin();
 		} else if (in.matchAdvance(ROLLBACK) != null) {
