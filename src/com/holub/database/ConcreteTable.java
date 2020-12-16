@@ -461,6 +461,11 @@ import com.holub.tools.ArrayIterator;
 		// Create places to hold the result of the join and to hold
 		// iterators for each table involved in the join.
 
+		// Resolve 'SELECT *'
+		if (requestedColumns == null) {
+			requestedColumns = columnNames.clone();
+		}
+
 		Table resultTable = new ConcreteTable(null, requestedColumns);
 		Cursor[] envelope = new Cursor[allTables.length];
 
@@ -557,8 +562,8 @@ import com.holub.tools.ArrayIterator;
 		String[] columnNames = null;
 		Table[] otherTables = null;
 
-		if (requestedColumns != null) // SELECT *
-		{
+		// SELECT *
+		if (requestedColumns != null) {
 			// Can't cast an Object[] to a String[], so make a copy to ensure
 			// type safety.
 
